@@ -42,7 +42,6 @@ router.post('/login', async (req, res) => {
       user.password
     );
     delete user.password;
-    console.log(user);
     !validPassword &&
       res.status(400).alert('Wrong password');
     res.status(200).json(user);
