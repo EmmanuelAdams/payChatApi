@@ -16,16 +16,13 @@ router.post('/', async (req, res) => {
 // Get
 router.get('/:conversationId', async (req, res) => {
   try {
-    console.log(
-      'conversationId => ',
-      req.params.conversationId
-    );
     const messages = await Message.find({
       conversationId: req.params.conversationId,
     }).populate({
       path: 'sender',
-      select: 'profilePicture',
+      select: 'profilePicture username',
     });
+    // console.log('messages => ', messages);
     res.status(200).json(messages);
   } catch (error) {
     res.status(500).json(error);
